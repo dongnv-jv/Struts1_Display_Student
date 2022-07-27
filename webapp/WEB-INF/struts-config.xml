@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="user" type=""></form-bean>
+
+	</form-beans>
+	<action-mappings>
+		<action path="/add.net" name="user" type="" parameter="add">
+			<forward name="addsuccess" path="/addsuccess.jsp" />
+			<forward name="addfail" path="/addfail.jsp" />
+		</action>
+
+	</action-mappings>
+
+</struts-config>
