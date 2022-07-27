@@ -7,13 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
 	<h1 align="center">
-		<a href="login.jsp">Login </a><br> <br> <br> <a
-			href="create.jsp"> Sign up</a>
+		<p>Ban da tao tai khoan thanh cong</p>
+		<br> <a href="index.jsp">Tro ve trang chu</a>
 	</h1>
 </body>
 </html>

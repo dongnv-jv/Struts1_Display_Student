@@ -1,6 +1,7 @@
 package action;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -42,9 +43,36 @@ public class UserAction extends MappingDispatchAction {
 			return mapping.findForward("loginfail");
 		}
 
-		if (name.equals(user.getName())&&password.equals(user.getPassword())) {
+		if (name.equals(user.getName()) && password.equals(user.getPassword())) {
 			return mapping.findForward("loginsuccess");
 		} else
 			return mapping.findForward("loginfail");
+	}
+
+	public ActionForward createUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		Connection conn = JDBCUtils.getConnection();
+		int a = 0;
+		UserForm user = (UserForm) form;
+		
+		
+		System.out.println(user.getName());
+		System.out.println(user.getPassword());
+		try {
+			String sql = "INSERT INTO user(name,password) VALUES(?,?)";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, user.getName());
+			pst.setString(2, user.getPassword());
+			a = pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return mapping.findForward("createfail");
+		}
+		if (a > 0) {
+			return mapping.findForward("createsuccess");
+		} else
+
+			return mapping.findForward("createfail");
+
 	}
 }

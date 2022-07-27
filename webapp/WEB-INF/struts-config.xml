@@ -13,6 +13,15 @@
 			<forward name="loginsuccess" path="/loginsuccess.jsp" />
 			<forward name="loginfail" path="/loginfail.jsp" />
 		</action>
+		
+		
+		<action path="/createUser" name="user" type="action.UserAction"
+			parameter="createUser">
+			<forward name="createsuccess" path="/createsuccess.jsp" />
+			<forward name="createfail" path="/createfail.jsp" />
+		</action>
+		
+		
 	</action-mappings>
 
 </struts-config>
