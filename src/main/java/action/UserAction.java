@@ -27,26 +27,24 @@ public class UserAction extends MappingDispatchAction {
 	public ActionForward login(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Connection conn = JDBCUtils.getConnection();
-		String password = null;
-		String name = null;
+
 		UserForm user = (UserForm) form;
+		System.out.println(user.getName());
+		System.out.println(user.getPassword());
 		try {
-			String sql = "SELECT * FROM user";
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				name = rs.getString("name");
-				password = rs.getString("password");
-			}
+			String sql = "SELECT * FROM user WHERE name = ? AND password = ?";
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, user.getName());
+			pstm.setString(2, user.getPassword());
+			ResultSet rs = pstm.executeQuery();
+			if (rs.next()) {
+				return mapping.findForward("loginsuccess");
+			} else
+				return mapping.findForward("loginfail");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return mapping.findForward("loginfail");
 		}
-
-		if (name.equals(user.getName()) && password.equals(user.getPassword())) {
-			return mapping.findForward("loginsuccess");
-		} else
-			return mapping.findForward("loginfail");
 	}
 
 	public ActionForward createUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -54,8 +52,7 @@ public class UserAction extends MappingDispatchAction {
 		Connection conn = JDBCUtils.getConnection();
 		int a = 0;
 		UserForm user = (UserForm) form;
-		
-		
+
 		System.out.println(user.getName());
 		System.out.println(user.getPassword());
 		try {
