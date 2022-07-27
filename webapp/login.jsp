@@ -12,7 +12,7 @@
 		<h2>
 			<p>Moi ban nhap tai khoan</p>
 		</h2>
-		<html:form action="add.net" method="post">
+		<html:form action="login.net" method="post">
 			<p>Moi ban nhap User</p>
 			<html:text property="name" name="user"></html:text>
 			<p>Moi ban nhap Password</p>
@@ -20,5 +20,11 @@
 			<html:submit>Submit</html:submit>
 		</html:form>
 	</h1>
+
+	<h2 align="center">
+		<a href="createuser.net"> Tao tai khoan</a>
+
+	</h2>
+
 </body>
 </html>

@@ -5,15 +5,14 @@
         "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 <struts-config>
 	<form-beans>
-		<form-bean name="user" type=""></form-bean>
-
+		<form-bean name="user" type="form.UserForm"></form-bean>
 	</form-beans>
 	<action-mappings>
-		<action path="/add.net" name="user" type="" parameter="add">
-			<forward name="addsuccess" path="/addsuccess.jsp" />
-			<forward name="addfail" path="/addfail.jsp" />
+		<action path="/login" name="user" type="action.UserAction"
+			parameter="login">
+			<forward name="loginsuccess" path="/loginsuccess.jsp" />
+			<forward name="loginfail" path="/loginfail.jsp" />
 		</action>
-
 	</action-mappings>
 
 </struts-config>
