@@ -14,7 +14,28 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>List Student</title>
+
+<style>
+table, td, th {
+	border: 1px solid black;
+}
+
+table {
+	border-collapse: collapse;
+	width: 70%;
+}
+
+td {
+	height: 50px;
+	vertical-align: bottom;
+}
+
+th {
+	text-align: center;
+}
+</style>
 </head>
+
 <body>
 	<%
 	ArrayList<StudentForm> List = (ArrayList) request.getAttribute("list");
@@ -28,16 +49,17 @@
 			<th>Day of birth</th>
 			<th>GPA</th>
 			<th>Time of Admission</th>
+			<th>Action</th>
 		</tr>
 
 		<%
-		if (request.getAttribute("list") != null) // Null check for the object
+		if (request.getAttribute("list") != null) 
 		{
-			Iterator<StudentForm> iterator = List.iterator(); // Iterator interface
+			Iterator<StudentForm> iterator = List.iterator(); 
 
-			while (iterator.hasNext()) // iterate through all the data until the last record
+			while (iterator.hasNext()) 
 			{
-				StudentForm st = iterator.next(); //assign individual employee record to the employee class object
+				StudentForm st = iterator.next(); 
 		%>
 		<tr>
 			<td><%=st.getIdst()%></td>
@@ -45,9 +67,10 @@
 			<td><%=st.getDayofbirth()%></td>
 			<td><%=st.getGpa()%></td>
 			<td><%=st.getYear()%></td>
+			<td><a href="delete.net?idst1=<%=st.getIdst()%>">Delete</a></td>
 		</tr>
 		<%
-		}
+		    }
 		}
 		%>
 	</table>

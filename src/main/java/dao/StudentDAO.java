@@ -95,4 +95,21 @@ public class StudentDAO {
 		}
 		return a;
 	}
+	
+	public int delete(String id) {
+		StudentForm student = new StudentForm();
+		int a = 0;
+		try {
+			Connection conn = JDBCUtils.getConnection();
+
+			String sql = "DELETE FROM student WHERE idst= '" + id + "'";
+			Statement stt = conn.createStatement();
+
+			a = stt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return a;
+	}
 }

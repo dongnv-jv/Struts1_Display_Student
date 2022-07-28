@@ -145,4 +145,15 @@ public class UserAction extends MappingDispatchAction {
 		return mapping.findForward("chagesuccess");
 
 	}
+	public ActionForward Delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		String id=request.getParameter("idst1");
+		StudentDAO stDao = new StudentDAO();
+		
+		int a= stDao.delete(id);
+		System.out.println(a);
+		return mapping.findForward("delete");
+
+	}
 }
