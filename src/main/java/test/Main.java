@@ -10,10 +10,10 @@ public static void main(String[] args) {
 	StudentDAO stdao= new StudentDAO();
 	
 	
-	ArrayList<StudentForm> list=stdao.showListSt();
+	StudentForm st=stdao.showSt("ABC123");
 	
-	for (StudentForm studentForm : list) {
-		System.out.println(studentForm);
-	}
+	
+		System.out.println(st);
+	
 }
 }

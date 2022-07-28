@@ -13,6 +13,7 @@ import utils.JDBCUtils;
 
 public class StudentDAO {
 	private StudentForm student;
+
 	public int addStudent(StudentForm st) {
 		int a = 0;
 		try {
@@ -30,28 +31,51 @@ public class StudentDAO {
 		}
 		return a;
 	}
-	public ArrayList<StudentForm> showListSt(){
+
+	public ArrayList<StudentForm> showListSt() {
 		ArrayList<StudentForm> list = new ArrayList();
-		
+
 		try {
 			Connection conn = JDBCUtils.getConnection();
 			String sql = "SELECT * FROM student ";
 			Statement stt = conn.createStatement();
-			ResultSet rs= stt.executeQuery(sql);
-			
-			while(rs.next()) {
-				StudentForm student= new StudentForm();	
+			ResultSet rs = stt.executeQuery(sql);
+
+			while (rs.next()) {
+				StudentForm student = new StudentForm();
 				student.setIdst(rs.getString("idst"));
 				student.setName(rs.getString("name"));
 				student.setDayofbirth(rs.getString("dayofbirth"));
 				student.setGpa(rs.getDouble("gpa"));
 				student.setYear(rs.getInt("year"));
-				list.add(student);			
+				list.add(student);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public StudentForm showSt(String id) {
+		StudentForm student = new StudentForm();
+		try {
+			Connection conn = JDBCUtils.getConnection();
+
+			String sql2 = "SELECT * FROM student WHERE idst = '" + id + "'";
+			Statement stt = conn.createStatement();
+			ResultSet rs = stt.executeQuery(sql2);
+			while (rs.next()) {
+
+				student.setIdst(rs.getString("idst"));
+				student.setName(rs.getString("name"));
+				student.setDayofbirth(rs.getString("dayofbirth"));
+				student.setGpa(rs.getDouble("gpa"));
+				student.setYear(rs.getInt("year"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return student;
 	}
 }

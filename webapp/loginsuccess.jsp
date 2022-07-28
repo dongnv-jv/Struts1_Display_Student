@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>You rre Login successfully !</p>
+<p>You are Login successfully !</p>
 <h1 align="center">
 <a href="addStudent.jsp">Add Student</a><br>
 <a href="showList.net">Show list Student</a>
 </h1>
-
 </body>
 </html>

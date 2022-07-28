@@ -20,8 +20,20 @@
 			<html:submit>Submit</html:submit>
 		</html:form>
 	</h1>
-
-	
-
+	<br>
+	<br>
+	<br>
+	<h1 align="center">
+		<h2>
+			<p>Moi ban nhap tai khoan Student</p>
+		</h2>
+		<html:form action="loginst.net" method="post">
+			<p>Moi ban nhap User</p>
+			<html:text property="idst" name="student"></html:text>
+			<p>Moi ban nhap Password</p>
+			<html:password property="password" name="student"></html:password>
+			<html:submit>Submit</html:submit>
+		</html:form>
+	</h1>
 </body>
 </html>

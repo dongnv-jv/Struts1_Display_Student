@@ -63,6 +63,26 @@ public class UserAction extends MappingDispatchAction {
 		}
 	}
 
+	public ActionForward loginSt(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		Connection conn = JDBCUtils.getConnection();
+		StudentForm student = (StudentForm) form;
+		try {
+			String sql = "SELECT * FROM student WHERE idst = ? AND password = ?";
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, student.getIdst());
+			pstm.setString(2, student.getPassword());
+			ResultSet rs = pstm.executeQuery();
+			if (rs.next()) {
+				return mapping.findForward("loginsuccessStudent");
+			} else
+				return mapping.findForward("loginfailStudent");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return mapping.findForward("loginfailStudent");
+		}
+	}
+
 	public ActionForward createUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Connection conn = JDBCUtils.getConnection();
@@ -88,16 +108,30 @@ public class UserAction extends MappingDispatchAction {
 			return mapping.findForward("createfail");
 
 	}
+
 	public ActionForward showList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		StudentDAO stDao = new StudentDAO();
-		ArrayList<StudentForm> list=stDao.showListSt();
-		
+		ArrayList<StudentForm> list = stDao.showListSt();
+
 		for (StudentForm studentForm : list) {
 			System.out.println(studentForm);
 		}
 		request.setAttribute("list", list);
 		return mapping.findForward("showlist");
+
+	}
+
+	public ActionForward showStudent(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		StudentForm stform= (StudentForm) form;
+		
+		StudentDAO stDao = new StudentDAO();
+		
+		StudentForm st = stDao.showSt(stform.getIdst());
+		System.out.println(st);
+		request.setAttribute("st", st);
+		return mapping.findForward("showstudent");
 
 	}
 }
