@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>You rre Login successfully !</p>
 <h1 align="center">
-<a href="addStudent.jsp">Add Student</a>
-
+<p>Add Student successfully </p>
+<p>You will be automatically return Home page after several second </p>
+<br> <meta http-equiv="refresh" content="3;url=login.jsp">
 </h1>
-
 </body>
 </html>

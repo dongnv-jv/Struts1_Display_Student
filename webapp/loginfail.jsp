@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login fail</title>
 </head>
 <body>
 	<h1 align="center">
-		<p>Ban dang nhap khong thanh cong</p>
-		<p>Ban se duoc tu dong chuyen ve trong Dang nhap sau 3 giay</p>
-		<meta http-equiv="refresh" content="3;url=login.jsp">
+		<p>Login fail !</p>
+		<p>You will be automatically return Login page after several second</p>
+		<meta http-equiv="refresh" content="2;url=login.jsp">
 	</h1>
 </body>
 </html>

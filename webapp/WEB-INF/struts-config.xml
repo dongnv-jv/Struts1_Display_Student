@@ -6,6 +6,7 @@
 <struts-config>
 	<form-beans>
 		<form-bean name="user" type="form.UserForm"></form-bean>
+		<form-bean name="student" type="form.StudentForm"></form-bean>
 	</form-beans>
 	<action-mappings>
 		<action path="/login" name="user" type="action.UserAction"
@@ -20,7 +21,16 @@
 			<forward name="createsuccess" path="/createsuccess.jsp" />
 			<forward name="createfail" path="/createfail.jsp" />
 		</action>
+		<action path="/addStudent" name="student" type="action.UserAction"
+			parameter="add">
+			<forward name="addsuccess" path="/addsuccess.jsp" />
+			<forward name="addfail" path="/addfail.jsp" />
+		</action>
 		
+		<action path="/showList" name="student" type="action.UserAction"
+			parameter="showList">
+			<forward name="showlist" path="/showlist.jsp" />
+		</action>
 		
 	</action-mappings>
 

@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Signed up successfully</title>
 </head>
 <body>
 	<h1 align="center">
-		<p>Ban da tao tai khoan thanh cong</p>
-		<br> <a href="index.jsp">Tro ve trang chu</a>
+		<p>Your account is signed up successfully</p>
+		<br> <a href="index.jsp">Click here to return HomePage</a>
 	</h1>
 </body>
 </html>

@@ -10,7 +10,7 @@ public class JDBCUtils {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_control_struts1", "root", "");
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();

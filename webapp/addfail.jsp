@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add student fail</title>
 </head>
 <body>
-<p>You rre Login successfully !</p>
 <h1 align="center">
-<a href="addStudent.jsp">Add Student</a>
-
-</h1>
-
+		<p>Add student fail !</p>
+		<p>You will be automatically return Home page after several second</p>
+		<meta http-equiv="refresh" content="2;url=addStudent.jsp">
+	</h1>
 </body>
 </html>
