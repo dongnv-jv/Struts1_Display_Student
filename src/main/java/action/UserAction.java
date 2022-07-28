@@ -134,4 +134,15 @@ public class UserAction extends MappingDispatchAction {
 		return mapping.findForward("showstudent");
 
 	}
+	public ActionForward changePassword(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		StudentForm stform= (StudentForm) form;
+		String pass=request.getParameter("pass");
+		StudentDAO stDao = new StudentDAO();
+		
+		int a= stDao.changePassword(stform.getIdst(), pass);
+		
+		return mapping.findForward("chagesuccess");
+
+	}
 }

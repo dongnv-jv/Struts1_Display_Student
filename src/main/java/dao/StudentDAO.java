@@ -78,4 +78,21 @@ public class StudentDAO {
 		}
 		return student;
 	}
+
+	public int changePassword(String id, String password) {
+		StudentForm student = new StudentForm();
+		int a = 0;
+		try {
+			Connection conn = JDBCUtils.getConnection();
+
+			String sql = "UPDATE student SET PASSWORD= '" + password + "' WHERE idst='" + id + "'";
+			Statement stt = conn.createStatement();
+
+			a = stt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return a;
+	}
 }

@@ -7,12 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
 	<h1 align="center">
-		<a href="login.jsp">Login </a><br> 
+		<form action="changepass.net" method="post">
+
+			<p>Moi ban nhap Password</p>
+			<input name="pass" type="password" /><br> <input type="submit"
+				values="Change" />
+		</form>
 	</h1>
 </body>
 </html>

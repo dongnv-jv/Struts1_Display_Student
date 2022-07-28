@@ -46,6 +46,11 @@
 			type="action.UserAction" parameter="showStudent">
 			<forward name="showstudent" path="/showstudent.jsp" />
 		</action>
+		
+		<action path="/changepass" name="student"
+			type="action.UserAction" parameter="changePassword">
+			<forward name="chagesuccess" path="/loginsuccessStudent.jsp" />
+		</action>
 	</action-mappings>
 
 </struts-config>
