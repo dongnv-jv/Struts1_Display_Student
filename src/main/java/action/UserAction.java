@@ -92,6 +92,10 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletResponse response) throws Exception {
 		StudentDAO stDao = new StudentDAO();
 		ArrayList<StudentForm> list=stDao.showListSt();
+		
+		for (StudentForm studentForm : list) {
+			System.out.println(studentForm);
+		}
 		request.setAttribute("list", list);
 		return mapping.findForward("showlist");
 

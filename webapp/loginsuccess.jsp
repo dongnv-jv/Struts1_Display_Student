@@ -9,8 +9,8 @@
 <body>
 <p>You rre Login successfully !</p>
 <h1 align="center">
-<a href="addStudent.jsp">Add Student</a>
-
+<a href="addStudent.jsp">Add Student</a><br>
+<a href="showList.net">Show list Student</a>
 </h1>
 
 </body>
