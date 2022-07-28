@@ -93,8 +93,6 @@ public class UserAction extends MappingDispatchAction {
 		StudentDAO stDao = new StudentDAO();
 		ArrayList<StudentForm> list=stDao.showListSt();
 		request.setAttribute("list", list);
-		
-		
 		return mapping.findForward("showlist");
 
 	}
