@@ -89,6 +89,8 @@ th {
 			<th>Day of birth</th>
 			<th>GPA</th>
 			<th>Time of Admission</th>
+			<th>Delete St</th>
+			<th>Edit St</th>
 		</tr>
 		<%
 		if (request.getAttribute("list") != null) // Null check for the object
@@ -101,6 +103,11 @@ th {
 			<td><%=st.getDayofbirth()%></td>
 			<td><%=st.getGpa()%></td>
 			<td><%=st.getYear()%></td>
+			<td>
+			
+			<%=st.getYear()%>
+			
+			</td>
 		</tr>
 		<%
 		}

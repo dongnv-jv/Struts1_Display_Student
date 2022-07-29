@@ -19,6 +19,7 @@ import dao.StudentDAO;
 import form.StudentForm;
 import form.UserForm;
 import utils.JDBCUtils;
+import utils.PostgresJDBCUtils;
 
 public class UserAction extends MappingDispatchAction {
 
@@ -42,13 +43,14 @@ public class UserAction extends MappingDispatchAction {
 
 	public ActionForward login(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		Connection conn = JDBCUtils.getConnection();
-
+		//Connection conn = JDBCUtils.getConnection();
+		
 		UserForm user = (UserForm) form;
 		System.out.println(user.getName());
 		System.out.println(user.getPassword());
 		try {
-			String sql = "SELECT * FROM user WHERE name = ? AND password = ?";
+			Connection conn= PostgresJDBCUtils.getConnection();
+			String sql = "SELECT * FROM struts_user WHERE user_name = ? AND user_password = ?";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setString(1, user.getName());
 			pstm.setString(2, user.getPassword());
@@ -65,10 +67,12 @@ public class UserAction extends MappingDispatchAction {
 
 	public ActionForward loginSt(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		Connection conn = JDBCUtils.getConnection();
+	//	Connection conn = JDBCUtils.getConnection();
+		
+		Connection conn = PostgresJDBCUtils.getConnection();
 		StudentForm student = (StudentForm) form;
 		try {
-			String sql = "SELECT * FROM student WHERE idst = ? AND password = ?";
+			String sql = "SELECT * FROM struts_student WHERE st_id = ? AND st_password = ?";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setString(1, student.getIdst());
 			pstm.setString(2, student.getPassword());
@@ -85,14 +89,15 @@ public class UserAction extends MappingDispatchAction {
 
 	public ActionForward createUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		Connection conn = JDBCUtils.getConnection();
+	//	Connection conn = JDBCUtils.getConnection();
+		Connection conn = PostgresJDBCUtils.getConnection();
 		int a = 0;
 		UserForm user = (UserForm) form;
 
 		System.out.println(user.getName());
 		System.out.println(user.getPassword());
 		try {
-			String sql = "INSERT INTO user(name,password) VALUES(?,?)";
+			String sql = "INSERT INTO struts_user(user_name,user_password) VALUES(?,?)";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setString(1, user.getName());
 			pst.setString(2, user.getPassword());

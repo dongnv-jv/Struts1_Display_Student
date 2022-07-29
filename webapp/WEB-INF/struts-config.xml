@@ -46,12 +46,12 @@
 			type="action.UserAction" parameter="showStudent">
 			<forward name="showstudent" path="/showstudent.jsp" />
 		</action>
-		
+<!-- Thay doi password cua student -->		
 		<action path="/changepass" name="student"
 			type="action.UserAction" parameter="changePassword">
 			<forward name="chagesuccess" path="/loginsuccessStudent.jsp" />
 		</action>
-		
+<!-- Xoa Student -->		
 		<action path="/delete" name="student"
 			type="action.UserAction" parameter="Delete">
 			<forward name="delete" path="/loginsuccess.jsp" />
