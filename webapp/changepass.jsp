@@ -14,6 +14,11 @@
 			<input name="pass" type="password" /><br> <input type="submit"
 				values="Change" />
 		</form>
+		
+			<br>
+		<br><h2>
+		<a href="logoutSt.do">Logout</a>
+		</h2>
 	</h1>
 </body>
 </html>

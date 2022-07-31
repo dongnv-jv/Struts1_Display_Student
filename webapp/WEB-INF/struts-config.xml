@@ -10,78 +10,91 @@
 	</form-beans>
 	<action-mappings>
 
-<!-- Login for admin -->
+		<!-- Login for admin -->
 		<action path="/login" name="user" type="action.UserAction"
 			parameter="login">
 			<forward name="loginsuccess" path="/loginsuccess.jsp" />
 			<forward name="loginfail" path="/login.jsp" />
 		</action>
-<!-- Login for Student -->
+		<!-- Login for Student -->
 		<action path="/loginst" name="student" type="action.UserAction"
 			parameter="loginSt">
-			<forward name="loginsuccessStudent" path="/loginsuccessStudent.jsp" />
+			<forward name="loginsuccessStudent"
+				path="/loginsuccessStudent.jsp" />
 			<forward name="loginfailStudent" path="/login.jsp" />
 		</action>
-<!-- Admin tao them tai khoan: co the la Student hoac Admin -->
+		<!-- Admin tao them tai khoan: co the la Student hoac Admin -->
 		<action path="/createUser" name="user" type="action.UserAction"
 			parameter="createUser">
 			<forward name="createsuccess" path="/loginsuccess.jsp" />
 			<forward name="createfail" path="/create.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-		
-<!-- Admin tao them tai khoan Student -->
+
+		<!-- Admin tao them tai khoan Student -->
 		<action path="/addStudent" name="student"
 			type="action.UserAction" parameter="add">
 			<forward name="addsuccess" path="/loginsuccess.jsp" />
 			<forward name="addfail" path="/addStudent.jsp" />
 		</action>
-<!-- Admin in ra toan bo danh sach Student -->
+		<!-- Admin in ra toan bo danh sach Student -->
 		<action path="/showList" name="student"
 			type="action.UserAction" parameter="showList">
 			<forward name="showlist" path="/showlist.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-		
-<!-- In ra thong tin cua 1 Student -->		
+
+		<!-- In ra thong tin cua 1 Student -->
 		<action path="/showStudent" name="student"
 			type="action.UserAction" parameter="showStudent">
 			<forward name="showstudent" path="/showstudent.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-<!-- Thay doi password cua student -->		
+		<!-- Thay doi password cua student -->
 		<action path="/changepass" name="student"
 			type="action.UserAction" parameter="changePassword">
 			<forward name="chagesuccess" path="/loginsuccessStudent.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-<!-- Xoa Student -->		
-		<action path="/delete" name="student"
-			type="action.UserAction" parameter="Delete">
-			<forward name="delete" path="/loginsuccess.jsp" />
-		</action>	
-		<action path="/home" 
+		<!-- Xoa Student -->
+		<action path="/delete" name="student" type="action.UserAction"
+			parameter="Delete">
+			<forward name="delete" path="/chuyentrang.jsp" />
+		</action>
+		<action path="/home"
 			type="org.apache.struts.actions.ForwardAction" parameter="/login.jsp">
 		</action>
-		
-		<action path="/addSt" name="student"
-			type="action.UserAction" parameter="addST">
+
+		<action path="/addSt" name="student" type="action.UserAction"
+			parameter="addST">
 			<forward name="addST" path="/addStudent.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-	
-		<action path="/createUs" 
-			type="action.UserAction" parameter="createUS">
+
+		<action path="/createUs" type="action.UserAction"
+			parameter="createUS">
 			<forward name="createUS" path="/create.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-		
-		<action path="/changeSt" 
-			type="action.UserAction" parameter="changepassSt">
+
+		<action path="/changeSt" type="action.UserAction"
+			parameter="changepassSt">
 			<forward name="changepassSt" path="/changepass.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-		
+		<!-- logout -->
+		<action path="/logout" type="action.UserAction"
+			parameter="logout">
+			<forward name="logout" path="/login.jsp" />
+		</action>
+		<action path="/logoutSt" type="action.UserAction"
+			parameter="logoutSt">
+			<forward name="logoutSt" path="/login.jsp" />
+		</action>
+		<!-- <action path="/chuyentrang" type="action.UserAction"
+			parameter="chuyentrang">
+			<forward name="chuyentrang" path="/showlist.jsp" />
+		</action> -->
 	</action-mappings>
 
 </struts-config>

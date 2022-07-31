@@ -32,6 +32,12 @@
 			<html:password property="password" name="user"></html:password>
 			<html:submit>Sign up</html:submit>
 		</html:form>
+			<br>
+			<br>
+		<br><h2>
+		<a href="logout.do">Logout</a>
+		</h2>
+		
 	</h1>
 </body>
 </html>

@@ -107,7 +107,6 @@ public class StudentDAO {
 			Connection conn = PostgresJDBCUtils.getConnection();
 			String sql = "DELETE FROM struts_student WHERE st_id = '" + id + "'";
 			Statement stt = conn.createStatement();
-
 			a = stt.executeUpdate(sql);
 
 		} catch (Exception e) {

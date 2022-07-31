@@ -12,7 +12,10 @@
 	<%
 	StudentForm st = (StudentForm) request.getAttribute("st");
 	%>
-
+	<br> <br> <br>
+		<h2>
+			<a href="logoutSt.do">Logout</a>
+		</h2>
 	<table cellspacing="2" cellpadding="2">
 		<tr>
 			<th>ID</th>

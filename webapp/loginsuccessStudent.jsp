@@ -18,6 +18,11 @@
 	<h2>
 		<a href="changeSt.do">Change your Password</a><br>
 		<br> <a href="showStudent.do">Display your Information</a>
+			<br>
+			<br>
+		<br><h2>
+		<a href="logoutSt.do">Logout</a>
+		</h2>
 	</h2>
 </body>
 </html>

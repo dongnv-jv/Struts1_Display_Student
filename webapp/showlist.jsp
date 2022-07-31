@@ -41,8 +41,13 @@ th {
 	<%
 	ArrayList<StudentForm> List = (ArrayList) request.getAttribute("list");
 	%>
-
-	<h3>Show List dung Interator</h3>
+	<br>
+		<br><h2>
+		<a href="logout.do">Logout</a>
+		</h2>
+		<br>
+			
+	<%-- <h3>Show List dung Interator</h3>
 	<table cellspacing="2" cellpadding="2">
 		<tr>
 			<th>ID</th>
@@ -77,8 +82,7 @@ th {
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
+	<br> --%>
 	<br>
 	<h3>Show List dung For each</h3>
 	<table cellspacing="2" cellpadding="2">
@@ -112,6 +116,10 @@ th {
 		}
 		%>
 	</table>
-
+<br>
+	<br>
+	<br>
+	<br>
+	<br>
 </body>
 </html>

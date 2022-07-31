@@ -38,6 +38,11 @@
 				
 			<html:submit>Add student</html:submit>			
 		</html:form>
+			<br>
+			<br>
+		<br><h2>
+		<a href="logout.do">Logout</a>
+		</h2>
 	</h1>
 </body>
 </html>
