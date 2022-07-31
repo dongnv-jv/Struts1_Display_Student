@@ -9,6 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="form.StudentForm"%>
 <%@page import="java.util.Iterator"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,13 +54,11 @@ th {
 		</tr>
 
 		<%
-		if (request.getAttribute("list") != null) 
-		{
-			Iterator<StudentForm> iterator = List.iterator(); 
+		if (request.getAttribute("list") != null) {
+			Iterator<StudentForm> iterator = List.iterator();
 
-			while (iterator.hasNext()) 
-			{
-				StudentForm st = iterator.next(); 
+			while (iterator.hasNext()) {
+				StudentForm st = iterator.next();
 		%>
 		<tr>
 			<td><%=st.getIdst()%></td>
@@ -70,7 +69,7 @@ th {
 			<td><a href="delete.net?idst1=<%=st.getIdst()%>">Delete</a></td>
 		</tr>
 		<%
-		    }
+		}
 		}
 		%>
 	</table>
@@ -93,22 +92,21 @@ th {
 			<th>Edit St</th>
 		</tr>
 		<%
-		if (request.getAttribute("list") != null) // Null check for the object
-		{
+		if (request.getAttribute("list") != null) {
 			for (StudentForm st : List) {
 		%>
 		<tr>
+			<form action="delete.net" method="post">
 			<td><%=st.getIdst()%></td>
 			<td><%=st.getName()%></td>
 			<td><%=st.getDayofbirth()%></td>
 			<td><%=st.getGpa()%></td>
 			<td><%=st.getYear()%></td>
-			<td>
-			
-			<%=st.getYear()%>
-			
-			</td>
+			<td><input type="hidden" name="delete" value="<%=st.getIdst()%>" />
+				<input type="submit" name="submit" value="Delete" />
+				</form></td>
 		</tr>
+		</form>
 		<%
 		}
 		}

@@ -10,6 +10,18 @@
 <body>
 <h1 align="center">
 		<h2>
+		<%
+	String err = (String) request.getAttribute("sr");
+	%>
+		
+		<%
+			if (err!= null) {	
+			%>
+			<p>Add Student Fail !</p>
+			<%
+			}
+			%>
+		
 			<p>Add Student </p>
 		</h2>
 		<html:form action="addStudent.net" method="post">

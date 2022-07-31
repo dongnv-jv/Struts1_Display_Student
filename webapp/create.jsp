@@ -10,6 +10,19 @@
 <body>
 <h1 align="center">
 		<h2>
+		<%
+	
+		String createUserFail = (String) request.getAttribute("fail");
+		%>
+		<%
+		if (createUserFail != null) {
+		%>
+		<font color="red">
+			<p>Create User fail !</p>
+		</font>
+		<%
+		}
+		%>
 			<p>Moi ban nhap </p>
 		</h2>
 		<html:form action="createUser.net" method="post">

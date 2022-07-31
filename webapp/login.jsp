@@ -8,8 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	String err = (String) request.getAttribute("error");
+	%>
 	<h1 align="center">
 		<h2>
+
+			<%
+			if (err!= null) {	
+			%>
+			<font color="red">
+			<p>Sai mat khau hoac tai khoan Admin</p></font>
+			<%
+			}
+			%>
+
 			<p>Moi ban nhap tai khoan</p>
 		</h2>
 		<html:form action="login.net" method="post">
@@ -22,9 +35,23 @@
 	</h1>
 	<br>
 	<br>
+	<hr>
 	<br>
 	<h1 align="center">
 		<h2>
+		<%
+	String err2 = (String) request.getAttribute("errSt");
+	%>
+		
+		<%
+			if (err2!= null) {	
+			%>
+			<font color="red">
+			<p>Sai mat khau hoac tai khoan Student</p></font>
+			<%
+			}
+			%>
+		
 			<p>Moi ban nhap tai khoan Student</p>
 		</h2>
 		<html:form action="loginst.net" method="post">
