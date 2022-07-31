@@ -24,7 +24,7 @@
 		
 			<p>Add Student </p>
 		</h2>
-		<html:form action="addStudent.net" method="post">
+		<html:form action="addStudent.do" method="post">
 			<p>ID Student</p>
 			<html:text property="idst" name="student"></html:text>
 			<p>Name Student</p>

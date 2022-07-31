@@ -47,22 +47,19 @@
 		<action path="/showStudent" name="student"
 			type="action.UserAction" parameter="showStudent">
 			<forward name="showstudent" path="/showstudent.jsp" />
+			<forward name="login" path="/login.jsp" />
 		</action>
 <!-- Thay doi password cua student -->		
 		<action path="/changepass" name="student"
 			type="action.UserAction" parameter="changePassword">
 			<forward name="chagesuccess" path="/loginsuccessStudent.jsp" />
+			<forward name="login" path="/login.jsp" />
 		</action>
 <!-- Xoa Student -->		
 		<action path="/delete" name="student"
 			type="action.UserAction" parameter="Delete">
 			<forward name="delete" path="/loginsuccess.jsp" />
-		</action>
-		<!-- <action path="/home" name="student"
-			type="action.UserAction" parameter="home">
-			<forward name="home" path="/login.jsp" />
-		</action> -->
-		
+		</action>	
 		<action path="/home" 
 			type="org.apache.struts.actions.ForwardAction" parameter="/login.jsp">
 		</action>
@@ -73,11 +70,18 @@
 			<forward name="login" path="/login.jsp" />
 		</action>
 	
-		<action path="/creatSt" name="student"
+		<action path="/createUs" 
 			type="action.UserAction" parameter="createUS">
 			<forward name="createUS" path="/create.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
+		
+		<action path="/changeSt" 
+			type="action.UserAction" parameter="changepassSt">
+			<forward name="changepassSt" path="/changepass.jsp" />
+			<forward name="login" path="/login.jsp" />
+		</action>
+		
 	</action-mappings>
 
 </struts-config>

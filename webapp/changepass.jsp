@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1 align="center">
-		<form action="changepass.net" method="post">
+		<form action="changepass.do" method="post">
 
 			<p>Moi ban nhap Password</p>
 			<input name="pass" type="password" /><br> <input type="submit"

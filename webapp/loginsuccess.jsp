@@ -37,11 +37,11 @@
 		%>
 
 
-		<a href="addSt.net">Add Student</a>
+		<a href="addSt.do">Add Student</a>
 		<br>
-		 <a href="showList.net">Show
+		 <a href="showList.do">Show
 			list Student</a><br> 
-			<a href="creatSt.net"> Create User</a>
+			<a href="createUs.do"> Create User</a>
 
 	</h1>
 </body>

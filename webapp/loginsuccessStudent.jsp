@@ -16,8 +16,8 @@
 	</h1>
 
 	<h2>
-		<a href="changepass.jsp">Change your Password</a><br>
-		<br> <a href="showStudent.net">Display your Information</a>
+		<a href="changeSt.do">Change your Password</a><br>
+		<br> <a href="showStudent.do">Display your Information</a>
 	</h2>
 </body>
 </html>

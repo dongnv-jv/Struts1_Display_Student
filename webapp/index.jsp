@@ -12,7 +12,7 @@
 	<br>
 	<br>
 	<h1 align="center">
-		<a href="login.net">Login </a><br> 
+		<a href="login.do">Login </a><br> 
 	</h1>
 </body>
 </html>

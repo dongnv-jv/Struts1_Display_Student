@@ -25,7 +25,7 @@
 		%>
 			<p>Moi ban nhap </p>
 		</h2>
-		<html:form action="createUser.net" method="post">
+		<html:form action="createUser.do" method="post">
 			<p>Moi ban nhap User</p>
 			<html:text property="name" name="user"></html:text>
 			<p>Moi ban nhap Password</p>

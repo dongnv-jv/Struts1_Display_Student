@@ -99,7 +99,7 @@ public class UserAction extends MappingDispatchAction {
 
 	public ActionForward loginSt(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// Connection conn = JDBCUtils.getConnection();
+		HttpSession session = request.getSession();
 		String err = "wrong";
 		Connection conn = PostgresJDBCUtils.getConnection();
 		StudentForm student = (StudentForm) form;
@@ -110,6 +110,7 @@ public class UserAction extends MappingDispatchAction {
 			pstm.setString(2, student.getPassword());
 			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {
+				session.setAttribute("check", student);
 				return mapping.findForward("loginsuccessStudent");
 			} else
 				request.setAttribute("errSt", err);
@@ -195,27 +196,58 @@ public class UserAction extends MappingDispatchAction {
 
 	public ActionForward showStudent(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		try {
+			HttpSession session = request.getSession();
+			StudentForm user2 = (StudentForm) session.getAttribute("check");
+			if (user2.getName() == null && user2.getPassword() == null) {
+				return mapping.findForward("login");
+			}
 		StudentForm stform = (StudentForm) form;
-
 		StudentDAO stDao = new StudentDAO();
 
 		StudentForm st = stDao.showSt(stform.getIdst());
 		System.out.println(st);
 		request.setAttribute("st", st);
 		return mapping.findForward("showstudent");
+		} catch (Exception e) {
+			return mapping.findForward("login");
+		}
+	}
 
+	public ActionForward changepassSt(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		try {
+			HttpSession session = request.getSession();
+			StudentForm user2 = (StudentForm) session.getAttribute("check");
+			if (user2.getName() == null && user2.getPassword() == null) {
+				return mapping.findForward("login");
+			}
+
+		} catch (Exception e) {
+			return mapping.findForward("login");
+		}
+		return mapping.findForward("changepassSt");
 	}
 
 	public ActionForward changePassword(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		StudentForm stform = (StudentForm) form;
-		String pass = request.getParameter("pass");
-		StudentDAO stDao = new StudentDAO();
 
-		int a = stDao.changePassword(stform.getIdst(), pass);
+		try {
+			HttpSession session = request.getSession();
+			StudentForm user2 = (StudentForm) session.getAttribute("check");
+			if (user2.getName() == null && user2.getPassword() == null) {
+				return mapping.findForward("login");
+			}
+			StudentForm stform = (StudentForm) form;
+			String pass = request.getParameter("pass");
+			StudentDAO stDao = new StudentDAO();
 
-		return mapping.findForward("chagesuccess");
+			int a = stDao.changePassword(stform.getIdst(), pass);
 
+			return mapping.findForward("chagesuccess");
+		} catch (Exception e) {
+			return mapping.findForward("login");
+		}
 	}
 
 	public ActionForward Delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,

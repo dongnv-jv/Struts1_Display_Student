@@ -66,7 +66,7 @@ th {
 			<td><%=st.getDayofbirth()%></td>
 			<td><%=st.getGpa()%></td>
 			<td><%=st.getYear()%></td>
-			<td><a href="delete.net?idst1=<%=st.getIdst()%>">Delete</a></td>
+			<td><a href="delete.do?idst1=<%=st.getIdst()%>">Delete</a></td>
 		</tr>
 		<%
 		}
@@ -96,7 +96,7 @@ th {
 			for (StudentForm st : List) {
 		%>
 		<tr>
-			<form action="delete.net" method="post">
+			<form action="delete.do" method="post">
 			<td><%=st.getIdst()%></td>
 			<td><%=st.getName()%></td>
 			<td><%=st.getDayofbirth()%></td>

@@ -25,7 +25,7 @@
 
 			<p>Moi ban nhap tai khoan</p>
 		</h2>
-		<html:form action="login.net" method="post">
+		<html:form action="login.do" method="post">
 			<p>Moi ban nhap User</p>
 			<html:text property="name" name="user"></html:text>
 			<p>Moi ban nhap Password</p>
@@ -54,7 +54,7 @@
 		
 			<p>Moi ban nhap tai khoan Student</p>
 		</h2>
-		<html:form action="loginst.net" method="post">
+		<html:form action="loginst.ho" method="post">
 			<p>Moi ban nhap User</p>
 			<html:text property="idst" name="student"></html:text>
 			<p>Moi ban nhap Password</p>
