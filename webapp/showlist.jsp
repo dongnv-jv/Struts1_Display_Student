@@ -46,7 +46,22 @@ th {
 		<a href="logout.do">Logout</a>
 		</h2>
 		<br>
-			
+		<br>
+		<%
+	String del = (String) request.getAttribute("del");
+	%>
+	<%
+		if (del != null) {
+		%>
+		<h2>
+		<font color="red">
+			<p>Delete Student successfully !</p>
+		</font>
+		</h2>
+		<%
+		}
+		%>
+		<br><br>	
 	<%-- <h3>Show List dung Interator</h3>
 	<table cellspacing="2" cellpadding="2">
 		<tr>

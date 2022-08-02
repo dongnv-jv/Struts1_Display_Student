@@ -26,14 +26,10 @@ import utils.PostgresJDBCUtils;
 public class UserAction extends MappingDispatchAction {
 	public ActionForward addST(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		try {
-			HttpSession session = request.getSession();
-			UserForm user2 = (UserForm) session.getAttribute("check");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			}
 
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+
+		if (session.getAttribute("hasUser") == null) {
 			return mapping.findForward("login");
 		}
 		return mapping.findForward("addST");
@@ -42,59 +38,41 @@ public class UserAction extends MappingDispatchAction {
 	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		try {
-			HttpSession session = request.getSession();
-			UserForm user2 = (UserForm) session.getAttribute("check");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			}
-			String sr = "wrong";
-			StudentForm st = (StudentForm) form;
-			StudentDAO stDao = new StudentDAO();
-			int a = 0;
-			try {
-				a = stDao.addStudent(st);
-				if (a > 0) {
-
-					request.setAttribute("ac", sr);
-					return mapping.findForward("addsuccess");
-				} else
-					request.setAttribute("sr", sr);
-				return mapping.findForward("addfail");
-			} catch (Exception e) {
-				return mapping.findForward("addfail");
-
-			}
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("hasUser") == null) {
 			return mapping.findForward("login");
 		}
+		String sr = "wrong";
+		StudentForm st = (StudentForm) form;
+		StudentDAO stDao = new StudentDAO();
+		int a = 0;
+		try {
+			a = stDao.addStudent(st);
+			if (a > 0) {
 
+				request.setAttribute("ac", sr);
+				return mapping.findForward("addsuccess");
+			} else
+				request.setAttribute("sr", sr);
+			return mapping.findForward("addfail");
+		} catch (Exception e) {
+			return mapping.findForward("addfail");
+		}
 	}
 
 	public ActionForward login(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// Connection conn = JDBCUtils.getConnection();
 		UserForm user = (UserForm) form;
-
-//		try {
 		HttpSession session = request.getSession();
-//			UserForm user2 = (UserForm) session.getAttribute("check");
-//			if (user2.getName() == null && user2.getPassword() == null) {
 
 		String er = "Wrong Password or User";
 		UserDAO userDAO = new UserDAO();
 		if (userDAO.checkLogin(user)) {
-			session.setAttribute("check", user);
-
+			session.setAttribute("hasUser", user);
 			return mapping.findForward("loginsuccess");
 		} else
 			request.setAttribute("error", er);
 		return mapping.findForward("loginfail");
-//			} else
-//				return mapping.findForward("loginsuccess");
-//		} catch (Exception e) {
-//			return mapping.findForward("loginfail");
-//		}
 	}
 
 	public ActionForward loginSt(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -110,7 +88,7 @@ public class UserAction extends MappingDispatchAction {
 			pstm.setString(2, student.getPassword());
 			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {
-				session.setAttribute("checkSt", student);
+				session.setAttribute("isLoggedIn", student);
 				return mapping.findForward("loginsuccessStudent");
 			} else
 				request.setAttribute("errSt", err);
@@ -124,14 +102,8 @@ public class UserAction extends MappingDispatchAction {
 
 	public ActionForward createUS(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		try {
-			HttpSession session = request.getSession();
-			UserForm user2 = (UserForm) session.getAttribute("check");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			}
-
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("hasUser") == null) {
 			return mapping.findForward("login");
 		}
 		return mapping.findForward("createUS");
@@ -139,91 +111,62 @@ public class UserAction extends MappingDispatchAction {
 
 	public ActionForward createUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
-		try {
-			HttpSession session = request.getSession();
-			UserForm user2 = (UserForm) session.getAttribute("check");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			} else {
-				Connection conn = PostgresJDBCUtils.getConnection();
-				int a = 0;
-				UserForm user = (UserForm) form;
-				String s = "success";
-				try {
-					String sql = "INSERT INTO struts_user(user_name,user_password) VALUES(?,?)";
-					PreparedStatement pst = conn.prepareStatement(sql);
-					pst.setString(1, user.getName());
-					pst.setString(2, user.getPassword());
-					a = pst.executeUpdate();
-				} catch (Exception e) {
-					e.printStackTrace();
-					request.setAttribute("fail", s);
-					return mapping.findForward("createfail");
-				}
-				if (a > 0) {
-					return mapping.findForward("createsuccess");
-				} else
-					request.setAttribute("fail", s);
-				return mapping.findForward("createfail");
-			}
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("hasUser") == null) {
 			return mapping.findForward("login");
 		}
+		Connection conn = PostgresJDBCUtils.getConnection();
+		int a = 0;
+		UserForm user = (UserForm) form;
+		String s = "success";
+		try {
+			String sql = "INSERT INTO struts_user(user_name,user_password) VALUES(?,?)";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, user.getName());
+			pst.setString(2, user.getPassword());
+			a = pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("fail", s);
+			return mapping.findForward("createfail");
+		}
+		if (a > 0) {
+			return mapping.findForward("createsuccess");
+		} else
+			request.setAttribute("fail", s);
+		return mapping.findForward("createfail");
 	}
 
 	public ActionForward showList(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		try {
-			HttpSession session = request.getSession();
-			UserForm user2 = (UserForm) session.getAttribute("check");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			}
-
-			StudentDAO stDao = new StudentDAO();
-			ArrayList<StudentForm> list = stDao.showListSt();
-
-			for (StudentForm studentForm : list) {
-				System.out.println(studentForm);
-			}
-			request.setAttribute("list", list);
-			return mapping.findForward("showlist");
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("hasUser") == null) {
 			return mapping.findForward("login");
 		}
+		StudentDAO stDao = new StudentDAO();
+		ArrayList<StudentForm> list = stDao.showListSt();
+		request.setAttribute("list", list);
+		return mapping.findForward("showlist");
 	}
 
 	public ActionForward showStudent(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		try {
-			HttpSession session = request.getSession();
-			StudentForm user2 = (StudentForm) session.getAttribute("checkSt");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			}
-			StudentForm stform = (StudentForm) form;
-			StudentDAO stDao = new StudentDAO();
-
-			StudentForm st = stDao.showSt(stform.getIdst());
-			System.out.println(st);
-			request.setAttribute("st", st);
-			return mapping.findForward("showstudent");
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("isLoggedIn") == null) {
 			return mapping.findForward("login");
 		}
+		StudentForm stform = (StudentForm) form;
+		StudentDAO stDao = new StudentDAO();
+		StudentForm st = stDao.showSt(stform.getIdst());
+		System.out.println(st);
+		request.setAttribute("st", st);
+		return mapping.findForward("showstudent");
 	}
 
 	public ActionForward changepassSt(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		try {
-			HttpSession session = request.getSession();
-			StudentForm user2 = (StudentForm) session.getAttribute("checkSt");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			}
-
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("isLoggedIn") == null) {
 			return mapping.findForward("login");
 		}
 		return mapping.findForward("changepassSt");
@@ -232,22 +175,17 @@ public class UserAction extends MappingDispatchAction {
 	public ActionForward changePassword(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		try {
-			HttpSession session = request.getSession();
-			StudentForm user2 = (StudentForm) session.getAttribute("checkSt");
-			if (user2.getName() == null && user2.getPassword() == null) {
-				return mapping.findForward("login");
-			}
-			StudentForm stform = (StudentForm) form;
-			String pass = request.getParameter("pass");
-			StudentDAO stDao = new StudentDAO();
-
-			int a = stDao.changePassword(stform.getIdst(), pass);
-
-			return mapping.findForward("chagesuccess");
-		} catch (Exception e) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("isLoggedIn") == null) {
 			return mapping.findForward("login");
 		}
+		StudentForm stform = (StudentForm) form;
+		String pass = request.getParameter("pass");
+		StudentDAO stDao = new StudentDAO();
+
+		int a = stDao.changePassword(stform.getIdst(), pass);
+
+		return mapping.findForward("chagesuccess");
 	}
 
 	public ActionForward Delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -255,7 +193,6 @@ public class UserAction extends MappingDispatchAction {
 
 		String id = request.getParameter("delete");
 		String delete = " del";
-		// String id2= (String) request.getAttribute("deletest");
 		StudentDAO stDao = new StudentDAO();
 		int a = 0;
 		a = stDao.delete(id);
@@ -270,7 +207,7 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
-		session.removeAttribute("check");
+		session.removeAttribute("hasUser");
 		return mapping.findForward("logout");
 
 	}
@@ -279,10 +216,9 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
-		session.removeAttribute("checkSt");
+		session.removeAttribute("isLoggedIn");
 		return mapping.findForward("logoutSt");
 
 	}
-
 
 }

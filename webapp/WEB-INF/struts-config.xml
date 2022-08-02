@@ -32,11 +32,26 @@
 		</action>
 
 		<!-- Admin tao them tai khoan Student -->
+		
+		
+		<!-- <action path="/addSt"
+			type="org.apache.struts.actions.ForwardAction" parameter="/addStudent.jsp">
+		</action> -->
+		
+		
+		<action path="/addSt" name="student" type="action.UserAction"
+			parameter="addST">
+			<forward name="addST" path="/addStudent.jsp" />
+			<forward name="login" redirect="true" path="/login.do" />
+		</action>
+		
 		<action path="/addStudent" name="student"
 			type="action.UserAction" parameter="add">
 			<forward name="addsuccess" path="/loginsuccess.jsp" />
 			<forward name="addfail" path="/addStudent.jsp" />
 		</action>
+		
+
 		<!-- Admin in ra toan bo danh sach Student -->
 		<action path="/showList" name="student"
 			type="action.UserAction" parameter="showList">
@@ -59,16 +74,10 @@
 		<!-- Xoa Student -->
 		<action path="/delete" name="student" type="action.UserAction"
 			parameter="Delete">
-			<forward name="delete" path="/chuyentrang.jsp" />
+			<forward name="delete" path="/showList.do" />
 		</action>
 		<action path="/home"
 			type="org.apache.struts.actions.ForwardAction" parameter="/login.jsp">
-		</action>
-
-		<action path="/addSt" name="student" type="action.UserAction"
-			parameter="addST">
-			<forward name="addST" path="/addStudent.jsp" />
-			<forward name="login" path="/login.jsp" />
 		</action>
 
 		<action path="/createUs" type="action.UserAction"
@@ -82,7 +91,7 @@
 			<forward name="changepassSt" path="/changepass.jsp" />
 			<forward name="login" path="/login.jsp" />
 		</action>
-		<!-- logout -->
+<!-- logout -->
 		<action path="/logout" type="action.UserAction"
 			parameter="logout">
 			<forward name="logout" path="/login.jsp" />
@@ -91,10 +100,7 @@
 			parameter="logoutSt">
 			<forward name="logoutSt" path="/login.jsp" />
 		</action>
-		<!-- <action path="/chuyentrang" type="action.UserAction"
-			parameter="chuyentrang">
-			<forward name="chuyentrang" path="/showlist.jsp" />
-		</action> -->
+
 	</action-mappings>
 
 </struts-config>
