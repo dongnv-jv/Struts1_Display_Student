@@ -10,7 +10,7 @@
 <body>
 
 	<%
-	StudentForm st = (StudentForm) request.getAttribute("st");
+	StudentForm studentShowById = (StudentForm) request.getAttribute("studentShowById");
 	%>
 	<br> <br> <br>
 		<h2>
@@ -26,11 +26,11 @@
 		</tr>
 
 		<tr>
-			<td><%=st.getIdst()%></td>
-			<td><%=st.getName()%></td>
-			<td><%=st.getDayofbirth()%></td>
-			<td><%=st.getGpa()%></td>
-			<td><%=st.getYear()%></td>
+			<td><%=studentShowById.getIdst()%></td>
+			<td><%=studentShowById.getName()%></td>
+			<td><%=studentShowById.getDayofbirth()%></td>
+			<td><%=studentShowById.getGpa()%></td>
+			<td><%=studentShowById.getYear()%></td>
 		</tr>
 	</table>
 

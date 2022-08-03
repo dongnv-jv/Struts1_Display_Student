@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>You are Login successfully !</p>
 	<h1 align="center">
-
-
 		<%
 		String err = (String) request.getAttribute("ac");
 		String createUserFail = (String) request.getAttribute("fail");

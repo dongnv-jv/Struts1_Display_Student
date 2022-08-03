@@ -48,10 +48,10 @@ th {
 		<br>
 		<br>
 		<%
-	String del = (String) request.getAttribute("del");
+	String statusDelete = (String) request.getAttribute("statusDelete");
 	%>
 	<%
-		if (del != null) {
+		if (statusDelete != null) {
 		%>
 		<h2>
 		<font color="red">
@@ -61,43 +61,9 @@ th {
 		<%
 		}
 		%>
-		<br><br>	
-	<%-- <h3>Show List dung Interator</h3>
-	<table cellspacing="2" cellpadding="2">
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Day of birth</th>
-			<th>GPA</th>
-			<th>Time of Admission</th>
-			<th>Action</th>
-		</tr>
-
-		<%
-		if (request.getAttribute("list") != null) {
-			Iterator<StudentForm> iterator = List.iterator();
-
-			while (iterator.hasNext()) {
-				StudentForm st = iterator.next();
-		%>
-		<tr>
-			<td><%=st.getIdst()%></td>
-			<td><%=st.getName()%></td>
-			<td><%=st.getDayofbirth()%></td>
-			<td><%=st.getGpa()%></td>
-			<td><%=st.getYear()%></td>
-			<td><a href="delete.do?idst1=<%=st.getIdst()%>">Delete</a></td>
-		</tr>
-		<%
-		}
-		}
-		%>
-	</table>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br> --%>
+		<br>	
+		<br>	
+	
 	<br>
 	<h3>Show List dung For each</h3>
 	<table cellspacing="2" cellpadding="2">

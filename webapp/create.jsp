@@ -8,14 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+   <%
+			if (session.getAttribute("hasUser") == null) {
+				%>
+	<meta http-equiv="refresh"
+		content="0; url = http://localhost:8080/Struts1_Display_Student/home.do" />
+	<%
+		}
+	%>
 <h1 align="center">
 		<h2>
+		
 		<%
-	
-		String createUserFail = (String) request.getAttribute("fail");
-		%>
-		<%
-		if (createUserFail != null) {
+		if (request.getAttribute("didCreateUser")!=null) {
 		%>
 		<font color="red">
 			<p>Create User fail !</p>

@@ -18,16 +18,15 @@ public class StudentDAO {
 	public int addStudent(StudentForm st) {
 		int a = 0;
 		try {
-			//Connection conn = JDBCUtils.getConnection();
 			Connection conn = PostgresJDBCUtils.getConnection();
 			String sql = "INSERT INTO struts_student(st_id,st_name,st_dayofbirth,st_gpa,st_year) VALUES(?,?,?,?,?)";
-			PreparedStatement pst = conn.prepareStatement(sql);
-			pst.setString(1, st.getIdst());
-			pst.setString(2, st.getName());
-			pst.setString(3, st.getDayofbirth());
-			pst.setDouble(4, st.getGpa());
-			pst.setInt(5, st.getYear());
-			a = pst.executeUpdate();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, st.getIdst());
+			pstm.setString(2, st.getName());
+			pstm.setString(3, st.getDayofbirth());
+			pstm.setDouble(4, st.getGpa());
+			pstm.setInt(5, st.getYear());
+			a = pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -36,13 +35,11 @@ public class StudentDAO {
 
 	public ArrayList<StudentForm> showListSt() {
 		ArrayList<StudentForm> list = new ArrayList();
-
 		try {
-		//	Connection conn = JDBCUtils.getConnection();
 			Connection conn = PostgresJDBCUtils.getConnection();
 			String sql = "SELECT * FROM struts_student ";
-			Statement stt = conn.createStatement();
-			ResultSet rs = stt.executeQuery(sql);
+			Statement sttm = conn.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
 
 			while (rs.next()) {
 				StudentForm student = new StudentForm();
@@ -63,7 +60,6 @@ public class StudentDAO {
 	public StudentForm showSt(String id) {
 		StudentForm student = new StudentForm();
 		try {
-			//Connection conn = JDBCUtils.getConnection();
 			Connection conn = PostgresJDBCUtils.getConnection();
 			String sql2 = "SELECT * FROM struts_student WHERE st_id = '" + id + "'";
 			Statement stt = conn.createStatement();
@@ -86,7 +82,6 @@ public class StudentDAO {
 		StudentForm student = new StudentForm();
 		int a = 0;
 		try {
-		//	Connection conn = JDBCUtils.getConnection();
 			Connection conn = PostgresJDBCUtils.getConnection();
 			String sql = "UPDATE struts_student SET st_password = '" + password + "' WHERE st_id='" + id + "'";
 			Statement stt = conn.createStatement();
@@ -98,12 +93,11 @@ public class StudentDAO {
 		}
 		return a;
 	}
-	
+
 	public int delete(String id) {
 		StudentForm student = new StudentForm();
 		int a = 0;
 		try {
-		//	Connection conn = JDBCUtils.getConnection();
 			Connection conn = PostgresJDBCUtils.getConnection();
 			String sql = "DELETE FROM struts_student WHERE st_id = '" + id + "'";
 			Statement stt = conn.createStatement();
@@ -113,5 +107,21 @@ public class StudentDAO {
 			e.printStackTrace();
 		}
 		return a;
+	}
+
+	public boolean checkLoginSt(StudentForm st) {
+		boolean b = false;
+		try {
+			Connection conn = PostgresJDBCUtils.getConnection();
+			String sql = "SELECT * FROM struts_student WHERE st_id = ? AND st_password = ?";
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, st.getIdst());
+			pstm.setString(2, st.getPassword());
+			ResultSet rs = pstm.executeQuery();
+			b = rs.next();
+		} catch (Exception e) {
+			b = false;
+		}
+		return b;
 	}
 }
