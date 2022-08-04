@@ -11,17 +11,21 @@
 <h1 align="center">
 		<h2>
 		<%
-	String err = (String) request.getAttribute("sr");
-	%>
-		
-		<%
-			if (err!= null) {	
+			if (request.getAttribute("statusAdd")!=null) {	
 			%>
+			<font color="red">
 			<p>Add Student Fail !</p>
+		</font>
 			<%
 			}
 			%>
-		
+			<%
+			
+			if (session.getAttribute("hasUser") == null) {
+				%>
+				<meta http-equiv = "refresh" content = "0; url = http://localhost:8080/Struts1_Display_Student/home.do" />
+				<% 			}
+			%>		
 			<p>Add Student </p>
 		</h2>
 		<html:form action="addStudent.do" method="post">

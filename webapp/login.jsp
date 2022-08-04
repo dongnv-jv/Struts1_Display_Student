@@ -8,21 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	String err = (String) request.getAttribute("error");
-	%>
 	<h1 align="center">
 		<h2>
 
 			<%
-			if (err!= null) {	
+				if (request.getAttribute("didLogin") != null) {
 			%>
 			<font color="red">
-			<p>Sai mat khau hoac tai khoan Admin</p></font>
+				<p>Sai mat khau hoac tai khoan Admin</p>
+			</font>
 			<%
-			}
+				}
 			%>
-
 			<p>Moi ban nhap tai khoan</p>
 		</h2>
 		<html:form action="login.do" method="post">
@@ -39,22 +36,20 @@
 	<br>
 	<h1 align="center">
 		<h2>
-		<%
-	String err2 = (String) request.getAttribute("errSt");
-	%>
-		
-		<%
-			if (err2!= null) {	
+
+			<%
+				if (request.getAttribute("didLoginSt") != null) {
 			%>
 			<font color="red">
-			<p>Sai mat khau hoac tai khoan Student</p></font>
+				<p>Sai mat khau hoac tai khoan Student</p>
+			</font>
 			<%
-			}
+				}
 			%>
-		
+
 			<p>Moi ban nhap tai khoan Student</p>
 		</h2>
-		<html:form action="loginst.ho" method="post">
+		<html:form action="loginSt.do" method="post">
 			<p>Moi ban nhap User</p>
 			<html:text property="idst" name="student"></html:text>
 			<p>Moi ban nhap Password</p>

@@ -46,43 +46,24 @@ th {
 		<a href="logout.do">Logout</a>
 		</h2>
 		<br>
-			
-	<%-- <h3>Show List dung Interator</h3>
-	<table cellspacing="2" cellpadding="2">
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Day of birth</th>
-			<th>GPA</th>
-			<th>Time of Admission</th>
-			<th>Action</th>
-		</tr>
-
+		<br>
 		<%
-		if (request.getAttribute("list") != null) {
-			Iterator<StudentForm> iterator = List.iterator();
-
-			while (iterator.hasNext()) {
-				StudentForm st = iterator.next();
+	String statusDelete = (String) request.getAttribute("statusDelete");
+	%>
+	<%
+		if (statusDelete != null) {
 		%>
-		<tr>
-			<td><%=st.getIdst()%></td>
-			<td><%=st.getName()%></td>
-			<td><%=st.getDayofbirth()%></td>
-			<td><%=st.getGpa()%></td>
-			<td><%=st.getYear()%></td>
-			<td><a href="delete.do?idst1=<%=st.getIdst()%>">Delete</a></td>
-		</tr>
+		<h2>
+		<font color="red">
+			<p>Delete Student successfully !</p>
+		</font>
+		</h2>
 		<%
 		}
-		}
 		%>
-	</table>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br> --%>
+		<br>	
+		<br>	
+	
 	<br>
 	<h3>Show List dung For each</h3>
 	<table cellspacing="2" cellpadding="2">

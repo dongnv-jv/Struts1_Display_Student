@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import form.StudentForm;
 import form.UserForm;
 import utils.PostgresJDBCUtils;
 
@@ -22,5 +23,22 @@ public class UserDAO {
 			b = false;
 		}
 		return b;
+	}
+
+	public int createUser(UserForm user) {
+		int a = 0;
+		try {
+			Connection conn = PostgresJDBCUtils.getConnection();
+			String sql = "INSERT INTO struts_user(user_name,user_password) VALUES(?,?)";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, user.getName());
+			pst.setString(2, user.getPassword());
+			a = pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		return a;
 	}
 }
