@@ -169,5 +169,6 @@ public class UserAction extends MappingDispatchAction {
 
 	}
 	// Test branch develop_responsive
+	
 
 }
