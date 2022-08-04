@@ -168,5 +168,6 @@ public class UserAction extends MappingDispatchAction {
 		return mapping.findForward("logoutSt");
 
 	}
+	// Test branch develop_responsive
 
 }
