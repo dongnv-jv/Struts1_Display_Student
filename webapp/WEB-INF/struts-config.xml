@@ -29,20 +29,15 @@
 		</action>
 		<action path="/createUser" name="user" type="action.UserAction"
 			parameter="createUser">
-			<forward name="createsuccess" path="/loginsuccess.jsp" />
+			<forward name="createsuccess" path="/showList.do" />
 			<forward name="createfail" path="/create.jsp" />
 			<forward name="loginReturn" path="/login.jsp" />
 		</action>
 		<!-- Admin tao them tai khoan Student -->
 
-		 <action path="/addSt"
-			type="org.apache.struts.actions.ForwardAction" parameter="/addStudent.jsp">
-		</action> 
-
 		<action path="/addStudent" name="student"
 			type="action.UserAction" parameter="addStudent">
-			<forward name="addsuccess" path="/loginsuccess.jsp" />
-			<forward name="addfail" path="/addStudent.jsp" />
+			<forward name="addsuccess" path="/showList.do" />
 			<forward name="loginReturn" path="/login.jsp" />
 		</action>
 		

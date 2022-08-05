@@ -29,20 +29,22 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
+		request.setAttribute("didDisplayAdd", "displayAdd");
 		if (session.getAttribute("hasUser") == null) {
 			return mapping.findForward("loginReturn");
 		}
-		String statusAdd = "Add Student Fail !";
+		String statusAdd = "Add";
 		StudentForm st = (StudentForm) form;
 		StudentDAO stDao = new StudentDAO();
-		int a = 0;
+		int a = 1;
+		request.setAttribute("statusAdd", "Addfail");
 		a = stDao.addStudent(st);
 		if (a > 0) {
-
-			return mapping.findForward("addsuccess");
-		} else
 			request.setAttribute("statusAdd", statusAdd);
-		return mapping.findForward("addfail");
+			
+		}
+			
+			return mapping.findForward("addsuccess");
 	}
 
 	public ActionForward loginAdmin(ActionMapping mapping, ActionForm form, HttpServletRequest request,
