@@ -131,9 +131,9 @@ public class UserAction extends MappingDispatchAction {
 		int a = stDao.changePassword(stform.getIdst(), pass);
 		if (a > 0) {
 			return mapping.findForward("changeSuccess");
-		}else 
+		} else
 			request.setAttribute("statusChange", statusChange);
-			return mapping.findForward("changeFail");
+		return mapping.findForward("changeFail");
 	}
 
 	public ActionForward delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -168,7 +168,20 @@ public class UserAction extends MappingDispatchAction {
 		return mapping.findForward("logoutSt");
 
 	}
+
 	// Test branch develop_responsive
-	
+	public ActionForward checklogin(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String checklogin = request.getParameter("Admin");
+
+		if (checklogin.equals("Admin")) {
+			request.setAttribute("checklogin", "Admin");
+		} else {
+
+			request.setAttribute("checklogin", "Student");
+
+		}
+		return mapping.findForward("checklogin");
+	}
 
 }

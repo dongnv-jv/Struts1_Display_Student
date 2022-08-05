@@ -13,7 +13,7 @@
 		<!-- Login for admin -->
 		<action path="/login" name="user" type="action.UserAction"
 			parameter="loginAdmin">
-			<forward name="loginsuccess" path="/loginsuccess.jsp" />
+			<forward name="loginsuccess" path="/showList.do" />
 			<forward name="loginfail" path="/login.jsp" />
 		</action>
 		<!-- Login for Student -->
@@ -89,6 +89,12 @@
 		<action path="/logoutSt" type="action.UserAction"
 			parameter="logoutSt">
 			<forward name="logoutSt" path="/login.jsp" />
+		</action>
+		
+		
+		<action path="/checklogin" type="action.UserAction"
+			parameter="checklogin">
+			<forward name="checklogin" path="/login.jsp" />
 		</action>
 
 	</action-mappings>
