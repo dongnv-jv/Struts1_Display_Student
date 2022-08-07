@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="ISO-8859-1">
 <title>List Student</title>
@@ -34,7 +35,8 @@
 	background-color: #f44336;
 	color: white;
 	border-radius: 4px;
-	margin: 8px 0;
+	text-align: center;
+	
 }
 
 input[type=text] {
@@ -55,6 +57,29 @@ input[type=text] {
 	text-decoration: none;
 	display: inline-block;
 	border-radius: 8px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0 auto;
+	width: 700px;
+}
+
+table th, table td {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+table th {
+	background-color: #f3f3f3;
+}
+
+@media only screen and (max-width: 700px) {
+	div {
+		width: 100%;
+		overflow-x: auto;
+	}
 }
 </style>
 </head>
@@ -96,7 +121,7 @@ input[type=text] {
 	%>
 	<br>
 
-	<h3 align="center">List Student</h3>
+	
 	<div align="center">
 		<table class="table table-bordered">
 			<thead>
@@ -106,7 +131,7 @@ input[type=text] {
 					<th>Day of birth</th>
 					<th>GPA</th>
 					<th>Time of Admission</th>
-					<th>Delete St</th>
+					<th>Delete</th>
 
 				</tr>
 			</thead>
@@ -148,13 +173,17 @@ input[type=text] {
 	<br>
 
 	<%
-		if (request.getAttribute("statusAdd") == "Addfail") {
+		if (request.getAttribute("statusAdd") == "prepareAdd") {
 	%>
-	<p style="color: red">Student is still added !</p>
+	<p style="color: red">Please enter Student information !</p>
 	<%
-		} else if (request.getAttribute("statusAdd") == "Add")  {
+		} else if (request.getAttribute("statusAdd") == "Addsuccess") {
 	%>
 	<p style="color: red">Add student successfully !</p>
+	<%
+		} else if (request.getAttribute("statusAdd") == "Addfail") {
+	%>
+	<p style="color: red">Add student fail !</p>
 	<%
 		}
 	%>
@@ -172,6 +201,7 @@ input[type=text] {
 			<html:text property="gpa" name="student"></html:text>
 			<p>Time of Admission (year)</p>
 			<html:text property="year" name="student"></html:text>
+			
 
 			<html:submit
 				style="border-radius: 8px ; background-color: #f44336;

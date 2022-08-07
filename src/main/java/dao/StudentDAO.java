@@ -17,6 +17,10 @@ public class StudentDAO {
 
 	public int addStudent(StudentForm st) {
 		int a = 0;
+		if(st.getIdst()==null || st.getName()== null ||
+				st.getDayofbirth()== null || st.getYear()==0 || st.getGpa()==0) {
+			return 0;
+		}
 		try {
 			Connection conn = PostgresJDBCUtils.getConnection();
 			String sql = "INSERT INTO struts_student(st_id,st_name,st_dayofbirth,st_gpa,st_year) VALUES(?,?,?,?,?)";

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
@@ -28,6 +29,12 @@ input[type=text], [type=password] {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
+}
+.title {
+	background-color: #f44336;
+	color: white;
+	border-radius: 4px;
+	margin: 8px 0;
 }
 </style>
 
@@ -70,9 +77,9 @@ input[type=text], [type=password] {
 			</html:form>
 		</div>
 		<br> <br> <br>
-		<h2>
-			<a href="logout.do">Logout</a>
-		</h2>
+		
+			<a class="title" href="logout.do">Log out</a>
+		
 
 	</h1>
 </body>
