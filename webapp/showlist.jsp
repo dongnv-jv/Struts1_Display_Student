@@ -125,7 +125,7 @@ table th {
 	<div align="center">
 		<table class="table table-bordered">
 			<thead>
-				<tr>
+				<tr align="center">
 					<th>ID</th>
 					<th>Name</th>
 					<th>Day of birth</th>

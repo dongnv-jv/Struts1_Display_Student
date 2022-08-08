@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -65,7 +66,7 @@
 	<div class="title">Student information</div>
 	<table class="table table-bordered">
 		<thead>
-			<tr>
+			<tr align="center">
 				<th>ID</th>
 				<th>Name</th>
 				<th>Day of birth</th>
