@@ -13,14 +13,14 @@
 		<!-- Login for admin -->
 		<action path="/login" name="user" type="action.UserAction"
 			parameter="loginAdmin">
-			<forward name="loginsuccess" path="/loginsuccess.jsp" />
+			<forward name="loginsuccess" path="/showList.do" />
 			<forward name="loginfail" path="/login.jsp" />
 		</action>
 		<!-- Login for Student -->
 		<action path="/loginSt" name="student" type="action.UserAction"
 			parameter="loginStudent">
 			<forward name="loginsuccessStudent"
-				path="/loginsuccessStudent.jsp" />
+				path="/showStudent.do" />
 			<forward name="loginfailStudent" path="/login.jsp" />
 		</action>
 		<!-- Admin tao them tai khoan:  Admin -->
@@ -29,20 +29,15 @@
 		</action>
 		<action path="/createUser" name="user" type="action.UserAction"
 			parameter="createUser">
-			<forward name="createsuccess" path="/loginsuccess.jsp" />
+			<forward name="createsuccess" path="/showList.do" />
 			<forward name="createfail" path="/create.jsp" />
 			<forward name="loginReturn" path="/login.jsp" />
 		</action>
 		<!-- Admin tao them tai khoan Student -->
 
-		 <action path="/addSt"
-			type="org.apache.struts.actions.ForwardAction" parameter="/addStudent.jsp">
-		</action> 
-
 		<action path="/addStudent" name="student"
 			type="action.UserAction" parameter="addStudent">
-			<forward name="addsuccess" path="/loginsuccess.jsp" />
-			<forward name="addfail" path="/addStudent.jsp" />
+			<forward name="addsuccess" path="/showList.do" />
 			<forward name="loginReturn" path="/login.jsp" />
 		</action>
 		
@@ -55,20 +50,19 @@
 		</action>
 
 <!-- In ra thong tin cua 1 Student -->
-		<action path="/showStudent" name="student"
+		 <action path="/showStudent" name="student"
 			type="action.UserAction" parameter="showStudent">
 			<forward name="showstudent" path="/showstudent.jsp" />
 			<forward name="loginReturn" path="/login.jsp" />
-		</action>
-<!-- Thay doi password cua student -->
-		<action path="/changeSt"
-			type="org.apache.struts.actions.ForwardAction" parameter="/changepass.jsp">
 		</action> 
+<!-- Thay doi password cua student -->
+		 <!-- <action path="/changeSt"
+			type="org.apache.struts.actions.ForwardAction" parameter="/changepass.jsp">
+		</action>   -->
 		
 		<action path="/changepass" name="student"
 			type="action.UserAction" parameter="changePasswordStudent">
-			<forward name="changeSuccess" path="/loginsuccessStudent.jsp" />
-			<forward name="changeFail" path="/changepass.jsp" />
+			<forward name="changeSuccess" path="/showStudent.do" />
 			<forward name="loginReturn" path="/login.jsp" />
 		</action>
 <!-- Xoa Student -->
@@ -89,6 +83,12 @@
 		<action path="/logoutSt" type="action.UserAction"
 			parameter="logoutSt">
 			<forward name="logoutSt" path="/login.jsp" />
+		</action>
+		
+		
+		<action path="/checklogin" type="action.UserAction"
+			parameter="checklogin">
+			<forward name="checklogin" path="/login.jsp" />
 		</action>
 
 	</action-mappings>

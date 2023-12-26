@@ -29,20 +29,38 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
+		request.setAttribute("didDisplayAdd", "displayAdd");
 		if (session.getAttribute("hasUser") == null) {
 			return mapping.findForward("loginReturn");
 		}
-		String statusAdd = "Add Student Fail !";
+
 		StudentForm st = (StudentForm) form;
 		StudentDAO stDao = new StudentDAO();
-		int a = 0;
-		a = stDao.addStudent(st);
-		if (a > 0) {
+
+		if (st.getIdst() == null || st.getName() == null) {
+			st.setIdst(null);
+			st.setName(null);
+			st.setDayofbirth(null);
+			st.setGpa(0);
+			st.setYear(0);
+			request.setAttribute("statusAdd", "prepareAdd");
 
 			return mapping.findForward("addsuccess");
-		} else
-			request.setAttribute("statusAdd", statusAdd);
-		return mapping.findForward("addfail");
+		} else {
+
+			int a = stDao.addStudent(st);
+			st.setIdst(null);
+			st.setName(null);
+			st.setDayofbirth(null);
+			st.setGpa(0);
+			st.setYear(0);
+			if (a > 0) {
+				request.setAttribute("statusAdd", "Addsuccess");
+			} else {
+				request.setAttribute("statusAdd", "Addfail");
+			}
+			return mapping.findForward("addsuccess");
+		}
 	}
 
 	public ActionForward loginAdmin(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -65,8 +83,10 @@ public class UserAction extends MappingDispatchAction {
 		String didLoginSt = "wrong username or pasword";
 		StudentForm student = (StudentForm) form;
 		StudentDAO stdao = new StudentDAO();
+
 		if (stdao.checkLoginSt(student)) {
 			session.setAttribute("isLoggedIn", student);
+
 			return mapping.findForward("loginsuccessStudent");
 		} else
 			request.setAttribute("didLoginSt", didLoginSt);
@@ -107,6 +127,7 @@ public class UserAction extends MappingDispatchAction {
 	public ActionForward showStudent(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+
 		if (session.getAttribute("isLoggedIn") == null) {
 			return mapping.findForward("loginReturn");
 		}
@@ -121,6 +142,7 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
+		request.setAttribute("didChange", "didChange");
 		if (session.getAttribute("isLoggedIn") == null) {
 			return mapping.findForward("loginReturn");
 		}
@@ -128,12 +150,14 @@ public class UserAction extends MappingDispatchAction {
 		String pass = request.getParameter("pass");
 		StudentDAO stDao = new StudentDAO();
 		String statusChange = "Change Password Fail !";
-		int a = stDao.changePassword(stform.getIdst(), pass);
-		if (a > 0) {
+
+		if (request.getParameter("pass") == null) {
 			return mapping.findForward("changeSuccess");
-		}else 
-			request.setAttribute("statusChange", statusChange);
-			return mapping.findForward("changeFail");
+		} else {
+			int a = stDao.changePassword(stform.getIdst(), pass);
+			return mapping.findForward("changeSuccess");
+		}
+
 	}
 
 	public ActionForward delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -167,6 +191,21 @@ public class UserAction extends MappingDispatchAction {
 		session.removeAttribute("isLoggedIn");
 		return mapping.findForward("logoutSt");
 
+	}
+
+	// Test branch develop_responsive
+	public ActionForward checklogin(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String checklogin = request.getParameter("Admin");
+
+		if (checklogin.equals("Admin")) {
+			request.setAttribute("checklogin", "Admin");
+		} else {
+
+			request.setAttribute("checklogin", "Student");
+
+		}
+		return mapping.findForward("checklogin");
 	}
 
 }

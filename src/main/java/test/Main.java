@@ -15,12 +15,12 @@ public static void main(String[] args) {
 	StudentDAO stdao= new StudentDAO();
 		try {
 			Connection conn= PostgresJDBCUtils.getConnection();
-			String sql = "SELECT * FROM struts_user WHERE user_name = ? AND user_password = ?";
-			PreparedStatement pstm = conn.prepareStatement(sql);
-			pstm.setString(1, "dongbk97");
-			pstm.setString(2, "1234");
-			ResultSet rs = pstm.executeQuery();
-			if (rs.next()) {
+			StudentDAO stDao = new StudentDAO();
+			StudentForm st= new StudentForm();
+			st.setYear(2019);
+			st.setName("Đông");
+			int a = stDao.addStudent(st);
+			if (a>0) {
 				System.out.println("ĐĂng nhập thành công");	
 			} else
 			System.out.println(1);
